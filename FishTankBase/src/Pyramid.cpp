@@ -3,6 +3,7 @@
 extern Camera myCamera;
 extern Light myLight;
 extern bool isShading;
+extern GLuint texture[];
 
 Pyramid::Pyramid()
 {
@@ -23,7 +24,10 @@ Pyramid::Pyramid()
 	faceColor[2][0] = 0.0; faceColor[2][1] = 0.0; faceColor[2][2] = 1.0;
 	faceColor[3][0] = 1.0; faceColor[3][1] = 1.0; faceColor[3][2] = 0.0;
 	faceColor[4][0] = 1.0; faceColor[4][1] = 0.0; faceColor[4][2] = 1.0;
-
+	textureID = 0 ;
+	sx = 1;
+	sy = 1;
+	sz = 1 ;
 	for (int i = 0 ; i<4; i++) {
 		Vector V1 = Vector(vertex[face[i][1]][0]-vertex[face[i][0]][0], vertex[face[i][1]][1]-vertex[face[i][0]][1], vertex[face[i][1]][2]-vertex[face[i][0]][2]);
 		Vector V2 = Vector(vertex[face[i][2]][0]-vertex[face[i][1]][0], vertex[face[i][2]][1]-vertex[face[i][1]][1], vertex[face[i][2]][2]-vertex[face[i][1]][2]);
@@ -35,7 +39,11 @@ Pyramid::Pyramid()
 
 void Pyramid::drawFace(GLint i)
 {
-	if (isShading) {
+	if(textureID != 0) {
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D,texture[textureID]);
+	}
+	else if (isShading) {
 		GLfloat shade = getShade(i, myLight);
 		glColor3f(faceColor[i][0]*shade, faceColor[i][1]*shade, faceColor[i][2]*shade);
 	} else {
@@ -43,13 +51,14 @@ void Pyramid::drawFace(GLint i)
 	}
 
 	glBegin(GL_POLYGON);
-	glVertex3fv(vertex[face[i][0]]);
-	glVertex3fv(vertex[face[i][1]]);
-	glVertex3fv(vertex[face[i][2]]);
+	glTexCoord2f(0.0, 0.0) ;glVertex3fv(vertex[face[i][0]]);
+	glTexCoord2f(1.0, 0.0) ;glVertex3fv(vertex[face[i][1]]);
+	glTexCoord2f(1.0, 1.0) ;glVertex3fv(vertex[face[i][2]]);
 	if(face[i][3] != -1){
-		glVertex3fv(vertex[face[i][3]]);
+		glTexCoord2f(0.0, 1.0) ;glVertex3fv(vertex[face[i][3]]);
 	}
     glEnd();
+    glDisable(GL_TEXTURE_2D);
 }
 
 
@@ -58,6 +67,7 @@ void Pyramid::draw()
     glPushMatrix();
     this->ctmMultiply();
 	glScalef(s, s, s);
+	glScalef(this->sx, this->sy, this->sz);
 	for (int i = 0; i < 5; i++) {
 		if (isFrontface(i, myCamera)) drawFace(i);
 	}

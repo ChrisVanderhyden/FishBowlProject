@@ -18,6 +18,8 @@ protected:
 public:
 	Pyramid();
 	void draw();
+	int textureID ;
+	float sx , sy , sz ;
 
 private:
 	void drawFace(GLint i);

@@ -7,7 +7,9 @@
 #include "pebble.hpp"
 #include "rectangle.hpp"
 #include "tank.hpp"
+#include "fish.hpp"
 extern GLint selected;
+
 
 extern GLint isAll;
 
@@ -60,6 +62,10 @@ void World::drawWorld() {
 		t->translate(0,-3.6,0) ;
 		t->rotate(0,1,0,0) ;
 		t->draw() ;
+		fish *f = new fish() ;
+//		glEnable(GL_TEXTURE_2D);
+//		glBindTexture(GL_TEXTURE_2D,texture[5]);
+		f->draw() ;
 	}
 	else
 		list[selected]->draw();

@@ -7,6 +7,9 @@ Sphere::Sphere() {
 	splices = 50;
 	stacks = 50;
 	quad = gluNewQuadric();
+	sx = 1 ;
+	sy = 1 ;
+	sz = 1 ;
 }
 
 Sphere::~Sphere() {
@@ -27,6 +30,8 @@ void Sphere::draw() {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glBindTexture(GL_TEXTURE_2D, textureID);
+		glScalef(this->s, this->s, this->s);
+		glScalef(this->sx, this->sy, this->sz);
 		gluSphere(this->quad, radius, 50, 50);
 		glDisable(GL_TEXTURE_2D);
 		gluDeleteQuadric(this->quad);

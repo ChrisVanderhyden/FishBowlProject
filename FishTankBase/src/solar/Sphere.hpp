@@ -13,7 +13,7 @@ public:
 		MODE_GLSL_SOLID,
 		MODE_TEXTURE
 	};
-
+	double sx, sy, sz ;
 	RenderMode mode;
 	GLfloat radius;
 	GLint splices, stacks;

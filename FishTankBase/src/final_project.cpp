@@ -168,7 +168,7 @@ void init(void) {
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	// Create two texture
-	glGenTextures(7, texture);
+	glGenTextures(10, texture);
 
 	// first texture configure and loading
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
@@ -196,7 +196,7 @@ void init(void) {
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-	Image* image3 = loadTexture("moon.bmp");
+	Image* image3 = loadTexture("grid.bmp");
 	glTexImage2D(GL_TEXTURE_2D, 0, 3, image3->sizeX, image3->sizeY, 0, GL_RGB,
 			GL_UNSIGNED_BYTE, image3->data);
 
@@ -220,7 +220,7 @@ void init(void) {
 	glTexImage2D(GL_TEXTURE_2D, 0, 3, image5->sizeX, image5->sizeY, 0, GL_RGB,
 			GL_UNSIGNED_BYTE, image5->data);
 
-	glBindTexture(GL_TEXTURE_2D, texture[5]);
+	glBindTexture(GL_TEXTURE_2D, texture[6]);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -229,7 +229,7 @@ void init(void) {
 	Image* image6 = loadTexture("red.bmp");
 	glTexImage2D(GL_TEXTURE_2D, 0, 3, image6->sizeX, image6->sizeY, 0, GL_RGB,
 			GL_UNSIGNED_BYTE, image6->data);
-	glDisable(GL_TEXTURE_2D);
+
 
 	glBindTexture(GL_TEXTURE_2D, texture[5]);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
@@ -240,7 +240,18 @@ void init(void) {
 	Image* image7 = loadTexture("wood.bmp");
 	glTexImage2D(GL_TEXTURE_2D, 0, 3, image7->sizeX, image7->sizeY, 0, GL_RGB,
 			GL_UNSIGNED_BYTE, image7->data);
+
+	glBindTexture(GL_TEXTURE_2D, texture[7]);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+	Image* image8 = loadTexture("feye.bmp");
+	glTexImage2D(GL_TEXTURE_2D, 0, 3, image8->sizeX, image8->sizeY, 0, GL_RGB,
+			GL_UNSIGNED_BYTE, image8->data);
 	glDisable(GL_TEXTURE_2D);
+
 
 	//myWorld.list[4] = &mySolar;        // and to world
 
