@@ -21,7 +21,7 @@
 #include "Point.hpp"
 
 //#include "pixmap/RGBpixmap.h"
-
+#include "fish.hpp"
 #include "solar/Solar.hpp"
 
 // global variables
@@ -47,7 +47,6 @@ GLuint ProgramObject; //GLSL program object  for a4p3
 //RGBpixmap pix[6];    // make six (empty) pixmaps
 bool isTexture = true;
 Solar mySolar;
-
 GLint isAll = false;  // an option to draw all objects in world of a3
 GLuint texture[7];
 
@@ -168,7 +167,7 @@ void init(void) {
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	// Create two texture
-	glGenTextures(10, texture);
+	glGenTextures(15, texture);
 
 	// first texture configure and loading
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
@@ -247,14 +246,53 @@ void init(void) {
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-	Image* image8 = loadTexture("feye.bmp");
+	Image* image8 = loadTexture("black.bmp");
 	glTexImage2D(GL_TEXTURE_2D, 0, 3, image8->sizeX, image8->sizeY, 0, GL_RGB,
 			GL_UNSIGNED_BYTE, image8->data);
-	glDisable(GL_TEXTURE_2D);
+
+	glBindTexture(GL_TEXTURE_2D, texture[8]);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+	Image* image9 = loadTexture("bred.bmp");
+	glTexImage2D(GL_TEXTURE_2D, 0, 3, image9->sizeX, image9->sizeY, 0, GL_RGB,
+			GL_UNSIGNED_BYTE, image9->data);
+
+	glBindTexture(GL_TEXTURE_2D, texture[9]);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+	Image* image10 = loadTexture("green.bmp");
+	glTexImage2D(GL_TEXTURE_2D, 0, 3, image10->sizeX, image10->sizeY, 0, GL_RGB,
+			GL_UNSIGNED_BYTE, image10->data);
+
+	glBindTexture(GL_TEXTURE_2D, texture[10]);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+	Image* image11 = loadTexture("blue.bmp");
+	glTexImage2D(GL_TEXTURE_2D, 0, 3, image11->sizeX, image11->sizeY, 0, GL_RGB,
+			GL_UNSIGNED_BYTE, image11->data);
+
+	glBindTexture(GL_TEXTURE_2D, texture[11]);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+	Image* image12 = loadTexture("purple.bmp");
+	glTexImage2D(GL_TEXTURE_2D, 0, 3, image12->sizeX, image12->sizeY, 0, GL_RGB,
+			GL_UNSIGNED_BYTE, image12->data);
 
 
 	//myWorld.list[4] = &mySolar;        // and to world
-
+	glDisable(GL_TEXTURE_2D);
 	myCamera.setDefaultCamera();       // initialize camera
 }
 

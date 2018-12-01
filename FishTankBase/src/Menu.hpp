@@ -18,6 +18,7 @@
 #include "Camera.hpp"
 #include "solar/Solar.hpp"
 #include "pebble.hpp"
+#include "fish.hpp"
 void menu();
 void MCTransMenu(GLint transOption);
 void WCTransMenu(GLint transOption);

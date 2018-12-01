@@ -9,12 +9,14 @@ extern bool isShading, isTexture;
 
 extern GLint a3option;
 
-extern GLuint ProgramObject;
+//extern GLuint ProgramObject;
 
 //extern GLint solarAnimation;
 extern Solar mySolar;
-
+extern fish *myfish ;
 extern GLint isAll;
+
+void fishMove(int i) ;
 
 // light properties
 GLfloat ambient[] = { 0.1f, 0.1f, 0.3f, 1.0f };
@@ -218,7 +220,7 @@ void A3Menu(GLint option) {
 		glDisable( GL_LIGHTING );
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_CULL_FACE);
-
+		fishMove(1) ;
 //		pebble peb ;
 //		peb.draw() ;
 	}
@@ -232,6 +234,7 @@ void A3Menu(GLint option) {
 		glDisable( GL_LIGHTING );
 		glDisable(GL_CULL_FACE);
 		glDisable(GL_DEPTH_TEST);
+
 
 	}
 	else if(option == 4) { // OpenGL light
@@ -432,20 +435,21 @@ void lightTransforms(GLint x) {
 }
 
 void A4Menu(GLint option) {
-    isAll = false;
-    a3option = 0;
-    a4option = 4;  // no option
-	isTexture = false;
-	glUseProgram(0);
+//    isAll = false;
+//    a3option = 0;
+//    a4option = 4;  // no option
+//	isTexture = false;
+//	glUseProgram(0);
 
 	switch (option) {
 		case 1:
 			a4option = 0;
+			fishMove(1) ;
 			break;
 		case 2:
 			selected = 3;
 			a4option = 1;
-
+			myWorld.feedfish(0,0.5,2.5) ;
 			break;
 
 		case 3:
@@ -610,4 +614,12 @@ void solarMove(int keepGoing)
     	  glutTimerFunc(40, solarMove, 1);
       }
      glutPostRedisplay();
+}
+void fishMove(int cont) {
+	myWorld.fishdance() ;
+	glutTimerFunc(40, fishMove,1);
+	glutPostRedisplay();
+
+
+
 }
